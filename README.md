@@ -11,14 +11,14 @@ Most of that code is private, so this profile is the part I can share.
 
 ### Open source
 
-<a href="https://github.com/akshayyswami/pg-schema-scout">
+<a href="https://github.com/akshayyswami/postgres-schema-mcp">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./assets/pg-schema-scout-dark.svg">
-    <img alt="pg-schema-scout: an MCP server that uses 6.0x less schema context than a full dump, blocks 12 of 12 unsafe queries and allows 9 of 9 safe ones." src="./assets/pg-schema-scout-light.svg" width="100%">
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/postgres-schema-mcp-dark.svg">
+    <img alt="postgres-schema-mcp: an MCP server that uses 6.0x less schema context than a full dump, blocks 21 of 21 unsafe queries and allows 12 of 12 safe ones." src="./assets/postgres-schema-mcp-light.svg" width="100%">
   </picture>
 </a>
 
-An MCP server that hands an agent only the tables relevant to its question instead of dumping the whole schema. Read-only is enforced in three layers (a SQL AST policy that catches a DELETE hidden inside a CTE, a SELECT-only database role, and statement timeouts), and CI runs a planted-fault matrix that has to block every unsafe query and let every safe one through.
+An MCP server that hands an agent only the tables relevant to its question instead of dumping the whole schema. Read-only is enforced below the prompt: a SQL AST policy that catches a DELETE hidden inside a CTE and a SELECT-only database role, with read-only transactions and a statement timeout behind them. CI runs a planted-fault matrix that has to block every unsafe query and let every safe one through.
 
 ### What I've built at work
 
